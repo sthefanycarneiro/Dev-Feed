@@ -6,6 +6,41 @@ import styles from './App.module.css'
 
 import './global.css';
 
+//author: {avatar_url: "" , name: "", role: ""}
+//publishedAt: Date
+//content: String
+
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/diego3g.png',
+      name: 'Diego Fernandes',
+      role: 'CTO @ Rockeseat',
+    },
+    content: [
+    { type: "paragraph" , content: "Fala galeraa 👋" },
+    { type: "paragraph" , content: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀" },
+    { type: "link" , content: "👉 dgallo.design/doctorcare" },
+    ],
+    publishedAt: new Date('2023-09-03 20:00:00'),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/maykbrito.png',
+      name: 'Mayk Brito',
+      role: 'CTO @ Rockeseat',
+    },
+    content: [
+    { type: "paragraph" , content: "Oi pessoal" },
+    { type: "paragraph" , content: "Tem video novo no canal! Confiram lá!" },
+    { type: "link" , content: 'youtube.com/@maykbrito'}
+    ],
+    publishedAt: new Date('2023-10-24 15:00:00'),
+  },
+]
+
 function App() {
   return (
       <div>
@@ -14,14 +49,15 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main> 
-          <Post
-            author= "Sthéfany Carneiro"
-            content= "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam, deserunt ducimus! Repellendus blanditiis exercitationem harum, molestiae fugiat nesciunt dolorem, voluptatum accusantium earum consequatur necessitatibus quaerat suscipit autem! Necessitatibus, quae esse."
-          />
-          <Post
-            author= "Daniel Gallo"
-            content= "Um post muito legal"
-          />
+          {posts.map(post => {
+            return (
+              <Post
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            )
+          })}
         </main>
       </div>
     </div>
